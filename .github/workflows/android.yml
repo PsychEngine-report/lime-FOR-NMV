@@ -30,11 +30,11 @@ jobs:
         uses: nttld/setup-ndk@v1
         id: setup-ndk
         with:
-          ndk-version: r29
+          ndk-version: r21c
 
       - name: Install Haxe dependencies
         run: |
-          haxelib git hxcpp https://github.com/FunkinCrew/hxcpp --quiet
+          haxelib git hxcpp https://github.com/FunkinCrew/hxcpp 4.2.1 --quiet
           haxelib install format --quiet
           haxelib install hxp --quiet
 
