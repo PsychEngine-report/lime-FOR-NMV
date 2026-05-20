@@ -2,10 +2,10 @@ name: Build and Push
 on: workflow_dispatch
 
 jobs:
-  android:
-    uses: ./.github/workflows/android.yml
-  ios:
-    uses: ./.github/workflows/ios.yml
+  #android:
+    #uses: ./.github/workflows/android.yml
+  #ios:
+    #uses: ./.github/workflows/ios.yml
   linux:
     uses: ./.github/workflows/linux.yml
   mac:
@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/miscellaneous.yml
 
   publisher:
-    needs: [android, ios, linux, mac, windows, miscellaneous]
+    needs:  [linux, mac, windows, miscellaneous] #[android, ios,
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,17 +32,17 @@ jobs:
           mkdir ndll
           rm -rf templates/bin/hl/*/
 
-      - name: Download Android-NDLL artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: Android-NDLL
-          path: ndll/Android
+      # - name: Download Android-NDLL artifact
+      #  uses: actions/download-artifact@v8
+      #   with:
+      #     name: Android-NDLL
+      #     path: ndll/Android
 
-      - name: Download iPhone-NDLL artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: iPhone-NDLL
-          path: ndll/iPhone
+      # - name: Download iPhone-NDLL artifact
+      #   uses: actions/download-artifact@v8
+      #   with:
+      #    name: iPhone-NDLL
+      #    path: ndll/iPhone
 
       - name: Download Linux64-NDLL artifact
         uses: actions/download-artifact@v8
