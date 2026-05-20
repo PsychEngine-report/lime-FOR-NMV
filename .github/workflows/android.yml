@@ -34,7 +34,7 @@ jobs:
 
       - name: Install Haxe dependencies
         run: |
-          haxelib install hxcpp 4.2.1 --quiet
+          haxelib git hxcpp https://github.com/FunkinCrew/hxcpp --quiet
           haxelib install format --quiet
           haxelib install hxp --quiet
 
