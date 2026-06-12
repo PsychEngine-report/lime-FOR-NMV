@@ -30,6 +30,7 @@
 	<set name="LIME_PIXMAN" value="1" />
 	<set name="LIME_SDL" value="1" />
 	<set name="LIME_SDL_IMAGE" value="1" if="LIME_SDL" />
+	<set name="LIME_VORBIS" value="1" />
 	<set name="LIME_ZLIB" value="1" />
 
 	<set name="OUTPUT_DIR" value="../ndll" unless="OUTPUT_DIR" />
