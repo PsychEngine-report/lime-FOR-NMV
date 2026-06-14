@@ -56,9 +56,7 @@ jobs:
         run: |
           export HXCPP_NO_OPTIMIZATION=1
           export HXCPP_COMPILE_THREADS=1
-          if [ -f "lib/sdl/src/process/posix/SDL_posixprocess.c" ]; then
-            echo "#define SDL_PROCESS_DISABLED 1" | cat - lib/sdl/src/process/posix/SDL_posixprocess.c > temp && mv temp lib/sdl/src/process/posix/SDL_posixprocess.c
-          fi
+          export HXCPP_EXTRA_FLAGS="-DSDL_PROCESS_DISABLED=1"
           haxelib run lime rebuild hxcpp
           haxelib run lime rebuild android -eval -nocolor -release
 
