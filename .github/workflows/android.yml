@@ -56,6 +56,11 @@ jobs:
         run: |
           export HXCPP_NO_OPTIMIZATION=1
           export HXCPP_COMPILE_THREADS=1
+          TARGET_FILE="project/lib/sdl/src/process/posix/SDL_posixprocess.c"
+          if [ -f "$TARGET_FILE" ]; then
+            echo "// Disabled for Android 21 build compatibility" > "$TARGET_FILE"
+            echo "Successfully wiped $TARGET_FILE"
+          fi
           haxelib run lime rebuild hxcpp
           haxelib run lime rebuild android -clean -eval -nocolor -release
 
