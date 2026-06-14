@@ -54,8 +54,10 @@ jobs:
 
       - name: Rebuild Lime
         run: |
+          export HXCPP_NO_OPTIMIZATION=1
+          export HXCPP_COMPILE_THREADS=1
           haxelib run lime rebuild hxcpp
-          haxelib run lime rebuild android -clean -eval -nocolor -release -threads 1 -Dno-parallel-build
+          haxelib run lime rebuild android -eval -nocolor -release
 
       - name: Upload Artifact (ndll/Android)
         uses: actions/upload-artifact@v7.0.0
