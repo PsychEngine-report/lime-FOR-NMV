@@ -5,7 +5,7 @@ on:
 
 jobs:
   android:
-    runs-on: macos-26
+    runs-on: macos-15
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
@@ -43,6 +43,7 @@ jobs:
           haxelib dev lime ${{ github.workspace }}
           export ANDROID_SDK=$ANDROID_HOME
           export ANDROID_NDK_ROOT=${{ steps.setup-ndk.outputs.ndk-path }}
+          export NDK_ROOT="${{ steps.setup-ndk.outputs.ndk-path }}"
           export JAVA_HOME=$JAVA_HOME_17_arm64
           export ANDROID_SETUP=true
           haxelib run lime setup android -alias -y -nocffi -eval
@@ -56,9 +57,14 @@ jobs:
         run: |
           export HXCPP_NO_OPTIMIZATION=1
           export HXCPP_COMPILE_THREADS=1
-          export HXCPP_EXTRA_FLAGS="-DSDL_PROCESS_DISABLED=1"
+          echo '<config>
+            <compiler id="android">
+              <flag value="-DSDL_PROCESS_DISABLED=1"/>
+            </compiler>
+            <setup id="android" NDK_ROOT="${{ steps.setup-ndk.outputs.ndk-path }}" />
+          </config>' > ~/.hxcpp_config.xml
           haxelib run lime rebuild hxcpp
-          haxelib run lime rebuild android -eval -nocolor -release
+          haxelib run lime rebuild android -clean -eval -nocolor -release
 
       - name: Upload Artifact (ndll/Android)
         uses: actions/upload-artifact@v7.0.0
