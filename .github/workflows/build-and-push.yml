@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/miscellaneous.yml
 
   publisher:
-    needs:  [linux, mac, windows, miscellaneous] #[android, ios,
+    needs:  [linux, mac, windows, miscellaneous, android, ios,]
     runs-on: ubuntu-latest
     permissions:
       contents: write
