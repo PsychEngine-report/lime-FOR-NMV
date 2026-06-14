@@ -43,7 +43,7 @@ jobs:
           haxelib dev lime ${{ github.workspace }}
           export ANDROID_SDK=$ANDROID_HOME
           export ANDROID_NDK_ROOT=${{ steps.setup-ndk.outputs.ndk-path }}
-          export JAVA_HOME=$JAVA_HOME_17_arm64
+          export JAVA_HOME=$JAVA_HOME_21_arm64
           export ANDROID_SETUP=true
           haxelib run lime setup android -alias -y -nocffi -eval
 
@@ -55,7 +55,7 @@ jobs:
       - name: Rebuild Lime
         run: |
           haxelib run lime rebuild hxcpp
-          haxelib run lime rebuild android -eval -nocolor -release
+          haxelib run lime rebuild android -eval -nocolor -release -clean -threads 2 > /dev/null
 
       - name: Upload Artifact (ndll/Android)
         uses: actions/upload-artifact@v7.0.0
