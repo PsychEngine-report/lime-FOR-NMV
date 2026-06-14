@@ -152,7 +152,7 @@ class AndroidPlatform extends PlatformTarget
 
 		for (architecture in architectures)
 		{
-			var minSDKVer = project.config.getInt("android.minimum-sdk-version", 28);
+			var minSDKVer = project.config.getInt("android.minimum-sdk-version", 21);
 			var haxeParams = [hxml, "-D", "android", "-D", 'HXCPP_ANDROID_PLATFORM=$minSDKVer', "-D", 'PLATFORM=android-$minSDKVer'];
 			var cppParams = ["-Dandroid", '-DHXCPP_ANDROID_PLATFORM=$minSDKVer', '-DPLATFORM=android-$minSDKVer'];
 			var path = sourceSet + "/jniLibs/";
@@ -372,7 +372,7 @@ class AndroidPlatform extends PlatformTarget
 		var x64 = ArrayTools.containsValue(project.architectures, Architecture.X64);
 		var x86 = ArrayTools.containsValue(project.architectures, Architecture.X86);
 
-		var minSDKVer = project.config.getInt("android.minimum-sdk-version", 28);
+		var minSDKVer = project.config.getInt("android.minimum-sdk-version", 21);
 		var platformNumberDefine = '-DHXCPP_ANDROID_PLATFORM=$minSDKVer';
 		var platformDefine = '-DPLATFORM=android-$minSDKVer';
 
@@ -447,7 +447,7 @@ class AndroidPlatform extends PlatformTarget
 			}
 		}
 
-		context.ANDROID_MINIMUM_SDK_VERSION = project.config.getInt("android.minimum-sdk-version", 28);
+		context.ANDROID_MINIMUM_SDK_VERSION = project.config.getInt("android.minimum-sdk-version", 21);
 		context.ANDROID_TARGET_SDK_VERSION = project.config.getInt("android.target-sdk-version", 35);
 		context.ANDROID_EXTENSIONS = project.config.getArrayString("android.extension");
 		context.ANDROID_PERMISSIONS = project.config.getArrayString("android.permission", []);
