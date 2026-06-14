@@ -5,6 +5,7 @@
 [submodule "project/lib/sdl"]
 	path = project/lib/sdl
 	url = https://github.com/Ethantobot11/SDL
+    branch = main
 	shallow = true
 [submodule "project/lib/openal"]
 	path = project/lib/openal
