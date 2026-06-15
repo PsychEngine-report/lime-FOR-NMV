@@ -55,7 +55,7 @@ jobs:
       - name: Rebuild Lime
         run: |
           export HXCPP_NO_OPTIMIZATION=1
-          export HXCPP_COMPILE_THREADS=1
+          export HXCPP_COMPILE_THREADS=2
           haxelib run lime rebuild hxcpp
           haxelib run lime rebuild android -clean -eval -nocolor -release
 
