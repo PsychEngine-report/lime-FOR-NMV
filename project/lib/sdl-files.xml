@@ -424,6 +424,8 @@
 
         <section>
 
+            <compilerflag value="-DSDL_PROCESS_DUMMY" if="android" />
+
             <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/process/SDL_process.c" />
             <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/process/posix/SDL_posixprocess.c" unless="windows || android" />
             <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/process/windows/SDL_windowsprocess.c" if="windows" />
